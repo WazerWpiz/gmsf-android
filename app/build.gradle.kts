@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.mylegguy.gmsf"
     compileSdk = 34
+    buildToolsVersion = "34.0.0"
 
     defaultConfig {
         applicationId = "com.mylegguy.gmsf"
