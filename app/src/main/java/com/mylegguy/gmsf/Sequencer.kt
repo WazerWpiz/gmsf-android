@@ -13,7 +13,7 @@ class Sequencer(private val onNote: (String, Float) -> Unit) {
     private var notes: List<Note> = emptyList()
     private var isPlaying = false
     private var position: Float = 0f
-    private var job: ScheduledFuture<?>? = null
+    private var job: ScheduledFuture<*>? = null
 
     private val secPerBeat: Float
         get() = 60f / bpm

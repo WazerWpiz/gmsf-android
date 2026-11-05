@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.BufferedWriter
+import java.io.IOException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.net.ServerSocket
@@ -148,12 +149,11 @@ class McpServer(
     private fun makeResult(id: Any, result: JSONObject): String =
         JSONObject(mapOf("jsonrpc" to "2.0", "id" to id, "result" to result)).toString()
 
-    private fun makeError(id: Any, code: Int, msg: String?, data: Any?): String =
-        JSONObject(mapOf(
-            "jsonrpc" to "2.0",
-            "id" to id,
-            "error" to JSONObject(mapOf("code" to code, "message" to msg).also { if (data != null) it.put("data", data) })
-        )).toString()
+    private fun makeError(id: Any, code: Int, msg: String?, data: Any?): String {
+        val err = JSONObject().put("code", code).put("message", msg)
+        if (data != null) err.put("data", data)
+        return JSONObject(mapOf("jsonrpc" to "2.0", "id" to id, "error" to err)).toString()
+    }
 
     private fun getState(): Map<String, Any> = mapOf(
         "songName" to songHolder.song.name,

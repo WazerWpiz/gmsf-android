@@ -1,8 +1,12 @@
 package com.mylegguy.gmsf
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.view.ViewGroup
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.mylegguy.gmsf.databinding.ActivityMainBinding
 
@@ -40,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener { addNote() }
 
         binding.bpm.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == android.view.EditorInfo.IME_ACTION_DONE) {
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) {
                 val v = binding.bpm.text.toString().toIntOrNull() ?: 120
                 sequencer.setBpm(v)
                 songHolder.song = songHolder.song.copy(bpm = v)
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 setTextSize(2, 10f)
                 setOnTouchListener { _, event ->
                     when (event.action) {
-                        android.view.MotionEvent.ACTION_DOWN -> { AudioEngine.playNote(note, 0.6f, 1f); setBackgroundColor(0xFF3B82F6); true }
+                        android.view.MotionEvent.ACTION_DOWN -> { AudioEngine.playNote(note, 0.6f, 1f); setBackgroundColor(0xFF3B82F6.toInt()); true }
                         android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> { setBackgroundColor(Color.TRANSPARENT); true }
                         else -> false
                     }
@@ -90,33 +94,33 @@ class MainActivity : AppCompatActivity() {
         val rowHeight = 40f
 
         // header row
-        val header = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, (rowHeight).toInt()) }
-        header.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(40, MATCH_PARENT) })
+        val header = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (rowHeight).toInt()) }
+        header.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(40, ViewGroup.LayoutParams.MATCH_PARENT) })
         for (i in 0 until stepCount) {
             header.addView(TextView(this).apply {
                 text = (i + 1).toString()
                 gravity = android.view.Gravity.CENTER
-                layoutParams = LinearLayout.LayoutParams(0, MATCH_PARENT, 1f)
+                layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f)
                 setTextSize(2, 9f)
             })
         }
         binding.seqGrid.addView(header)
 
         for (note in noteNames) {
-            val row = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, (rowHeight).toInt()) }
+            val row = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (rowHeight).toInt()) }
             row.addView(TextView(this).apply {
                 text = note
                 gravity = android.view.Gravity.CENTER
-                layoutParams = LinearLayout.LayoutParams(40, MATCH_PARENT)
+                layoutParams = LinearLayout.LayoutParams(40, ViewGroup.LayoutParams.MATCH_PARENT)
                 setTextSize(2, 10f)
             })
             for (step in 0 until stepCount) {
                 val cell = Button(this).apply {
                     val t = step / 4f
                     val has = songHolder.song.notes.any { it.note == note && Math.round(it.time * 4) == step }
-                    if (has) setBackgroundColor(0xFF2563EB)
+                    if (has) setBackgroundColor(0xFF2563EB.toInt())
                     text = ""
-                    layoutParams = LinearLayout.LayoutParams(0, MATCH_PARENT, 1f)
+                    layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f)
                     setOnClickListener {
                         toggleCell(note, step, this)
                     }
@@ -136,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             val newNote = Note(songHolder.song.notes.size + 1, time, note)
             songHolder.song = songHolder.song.copy(notes = (songHolder.song.notes + newNote).sortedBy { it.time })
-            cell.setBackgroundColor(0xFF2563EB)
+            cell.setBackgroundColor(0xFF2563EB.toInt())
         }
         refreshMeta()
     }

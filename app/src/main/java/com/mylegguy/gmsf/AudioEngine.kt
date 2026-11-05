@@ -35,7 +35,7 @@ object AudioEngine {
             .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
             .build()
         val bufferSize = AudioTrack.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_FLOAT)
-        track = AudioTrack(attrs, format, max(bufferSize, 4096), AudioTrack.MODE_STREAM, AudioManager.AUDIO_SESSION_ID_GENERATE)
+        track = AudioTrack(attrs, format, maxOf(bufferSize, 4096), AudioTrack.MODE_STREAM, AudioManager.AUDIO_SESSION_ID_GENERATE)
         track.play()
     }
 
@@ -56,7 +56,7 @@ object AudioEngine {
             val env = if (i < samples * 0.1) i / (samples * 0.1).toFloat() else 1f
             buffer[i] = (Math.sin(twoPi * freq * t) * 0.5 + Math.sin(twoPi * freq * 2 * t) * 0.25).toFloat() * env * velocity * 0.2f
         }
-        track.write(buffer, 0, samples)
+        track.write(buffer, 0, samples, AudioTrack.WRITE_BLOCKING)
     }
 
     fun release() {
