@@ -168,7 +168,8 @@
                     android:textSize="11sp"
                     android:textStyle="bold"
                     android:textColor="@color/text"
-                    android:padding="4dp 10dp"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
                     android:background="#EEF2F7" />
 
                 <TextView
