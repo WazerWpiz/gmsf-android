@@ -1,6 +1,6 @@
 # GMSF Studio
 
-Aplikasi Android untuk membuat musik (Growtopia Music Simulator Final remake) dengan integrasi MCP (Model Context Protocol) untuk komposisi via AI agent.
+Aplikasi Android untuk membuat musik (remake Growtopia Music Simulator Final) dengan integrasi MCP (Model Context Protocol) untuk komposisi via AI agent.
 
 ## Fitur
 
@@ -11,7 +11,7 @@ Aplikasi Android untuk membuat musik (Growtopia Music Simulator Final remake) de
 - **Eraser mode** — hapus note cepat
 - **Metadata lagu** — Title, Author, Description
 - **Theme** — 6 background preset
-- **MCP Server** — HTTP JSON-RPC di port 8765 (27 tools)
+- **MCP Server** — HTTP JSON-RPC di port **8765** (27 tools)
 
 ## Instalasi
 
@@ -43,7 +43,7 @@ adb forward tcp:8765 tcp:8765
 - `list_songs`, `delete_song`, `export_song`, `import_song`
 - `get_instruments`, `set_theme`, `set_repeat`, `describe`
 
-**Contoh compose via agent:**
+**Contoh komposisi via agent:**
 ```bash
 curl -X POST http://127.0.0.1:8765/mcp \
   -H "Content-Type: application/json" \
@@ -63,17 +63,17 @@ Format JSON schema `gmsf-song/2` kompatibel dengan GTMUSIC.
 gmsf-android/
 ├── app/
 │   ├── src/main/java/com/mylegguy/gmsf/
-│   │   ├── MainActivity.kt      # UI, toolbar, MCP service control
+│   │   ├── MainActivity.kt      # UI, toolbar, kontrol MCP service
 │   │   ├── McpServer.kt         # HTTP JSON-RPC server (27 tools)
 │   │   ├── McpService.kt        # Foreground service MCP
 │   │   ├── SongBoardView.kt     # Custom view piano roll
 │   │   ├── AudioEngine.kt       # SoundPool playback
-│   │   ├── Sequencer.kt         # Playback scheduler
+│   │   ├── Sequencer.kt         # Penjadwal playback
 │   │   ├── SongRepository.kt    # Save/Load JSON internal
-│   │   ├── SongJson.kt          # JSON/GTMUSIC serialize
-│   │   ├── Instruments.kt       # 15 instrument families
+│   │   ├── SongJson.kt          # Serialisasi JSON/GTMUSIC
+│   │   ├── Instruments.kt       # 15 family instrument
 │   │   └── ...
-│   └── src/main/assets/assets/  # Original assets (sound, images, init.lua)
+│   └── src/main/assets/assets/  # Asset asli (sound, images, init.lua)
 ├── build.gradle.kts
 └── gradle/
 ```
