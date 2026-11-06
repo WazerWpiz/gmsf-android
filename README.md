@@ -24,7 +24,6 @@ cd gmsf-android
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Atau download APK di [Releases](https://github.com/WazerWpiz/gmsf-android/releases).
 
 ## MCP (Model Context Protocol)
 
@@ -86,4 +85,4 @@ gmsf-android/
 
 ## Lisensi
 
-Asset asli dari **Growtopia Music Simulator Final** (MyLegGuy). Kode project ini untuk keperluan edukasi/penelitian.
+Asset asli dari **Growtopia Music Simulator Final** (MyLegGuy). Kode project ini untuk keperluan edukasi.
