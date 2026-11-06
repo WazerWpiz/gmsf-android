@@ -12,8 +12,8 @@ android {
         applicationId = "com.mylegguy.gmsf"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "2.0.0"
     }
 
     buildTypes {
@@ -38,6 +38,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    androidResources {
+        noCompress.add("wav")
+    }
 }
 
 dependencies {
@@ -45,6 +49,4 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("org.json:json:20231013")
 }

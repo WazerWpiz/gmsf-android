@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#F5F7FB</color>
+    <color name="background">#BDBDBD</color>
+    <color name="desktop">#BDBDBD</color>
     <color name="panel">#FFFFFF</color>
     <color name="accent">#2563EB</color>
     <color name="accent_active">#3B82F6</color>
     <color name="text">#1F2937</color>
-    <color name="muted">#6B7280</color>
+    <color name="muted">#4B5563</color>
     <color name="playing">#10B981</color>
     <color name="stop">#EF4444</color>
     <color name="key_bg">#000000</color>

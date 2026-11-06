@@ -1,306 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/desktop">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.22"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- Header -->
-        <LinearLayout
+        <com.mylegguy.gmsf.SongBoardView
+            android:id="@+id/board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <HorizontalScrollView
+            android:id="@+id/toolbarScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <View
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:background="@color/accent"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/text" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="  •  Music Simulator"
-                android:textSize="12sp"
-                android:textColor="@color/muted" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/muted"
-            android:layout_marginVertical="12dp" />
-
-        <!-- Song panel -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/panel"
-            android:padding="14dp"
-            android:elevation="2dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lagu"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@color/muted"
-                android:layout_marginBottom="6dp" />
+            android:background="@color/desktop"
+            android:fillViewport="false"
+            android:scrollbars="none">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/toolbar"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <EditText
-                    android:id="@+id/songName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/song_name"
-                    android:text="Untitled"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="8dp"
-                    android:background="@android:color/white" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="8dp">
-
-                    <Button
-                        android:id="@+id/btnNew"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Baru"
-                        android:textSize="12sp" />
-
-                    <Button
-                        android:id="@+id/btnLoad"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Muat"
-                        android:textSize="12sp"
-                        android:layout_marginStart="6dp" />
-
-                    <Button
-                        android:id="@+id/btnSave"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Simpan"
-                        android:textSize="12sp"
-                        android:layout_marginStart="6dp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bpm"
-                    android:textSize="14sp"
-                    android:textColor="@color/text" />
-
-                <EditText
-                    android:id="@+id/bpm"
-                    android:layout_width="64dp"
-                    android:layout_height="wrap_content"
-                    android:text="120"
-                    android:inputType="number"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:padding="6dp"
-                    android:layout_marginStart="8dp"
-                    android:background="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/bpmText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="120 bpm"
-                    android:textSize="12sp"
-                    android:textColor="@color/muted"
-                    android:layout_marginStart="8dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:id="@+id/pill"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/status_ready"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="10dp"
-                    android:background="#EEF2F7" />
-
-                <TextView
-                    android:id="@+id/meta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 catatan"
-                    android:textSize="12sp"
-                    android:textColor="@color/muted"
-                    android:layout_marginStart="10dp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Keyboard -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Keyboard"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@color/muted"
-                android:layout_marginBottom="6dp" />
-
-            <LinearLayout
-                android:id="@+id/keyboard"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="#000"
-                android:orientation="horizontal"
-                android:paddingBottom="4dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tekan kunci untuk bunyi"
-                android:textSize="11sp"
-                android:textColor="@color/muted"
-                android:layout_marginTop="6dp" />
-        </LinearLayout>
-
-        <!-- Sequencer -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sequencer"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/muted" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="8dp">
-
-                    <Button
-                        android:id="@+id/btnPlay"
-                        style="@style/Widget.MaterialComponents.Button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="&#9658; Putar"
-                        android:textSize="13sp" />
-
-                    <Button
-                        android:id="@+id/btnStop"
-                        style="@style/Widget.MaterialComponents.Button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="&#9632; Berhenti"
-                        android:textSize="13sp"
-                        android:layout_marginStart="6dp" />
-
-                    <Button
-                        android:id="@+id/btnClear"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kosongkan"
-                        android:textSize="12sp"
-                        android:layout_marginStart="8dp" />
-
-                    <Button
-                        android:id="@+id/btnAdd"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+ Catatan"
-                        android:textSize="12sp"
-                        android:layout_marginStart="6dp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/seqGrid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="8dp"
-                android:background="#F8FAFC"
-                android:padding="4dp" />
-
-            <TextView
-                android:id="@+id/seqMeta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pos: 0"
-                android:textSize="12sp"
-                android:textColor="@color/muted"
-                android:layout_marginTop="6dp" />
-        </LinearLayout>
+                android:paddingStart="4dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="2dp" />
+        </HorizontalScrollView>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="24dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/desktop"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:id="@+id/songLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Untitled"
+                android:textColor="@color/text"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/instrumentLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="#332563EB"
+                android:paddingStart="6dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="2dp"
+                android:text="Piano"
+                android:textColor="@color/accent"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/noteCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="0 notes"
+                android:textColor="@color/muted"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/mcpStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="MCP off"
+                android:textColor="@color/muted"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/mcpToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:minWidth="0dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="Start MCP"
+                android:textAllCaps="false"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/menuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_marginStart="6dp"
+                android:minWidth="0dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="Menu"
+                android:textAllCaps="false"
+                android:textSize="11sp" />
+        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</FrameLayout>

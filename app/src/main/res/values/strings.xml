@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GMSF Modern</string>
+    <string name="app_name">GMSF Studio</string>
     <string name="bpm">BPM</string>
-    <string name="save">Simpan</string>
-    <string name="load">Muat</string>
-    <string name="play">Putar</string>
-    <string name="stop">Berhenti</string>
-    <string name="clear">Kosongkan</string>
-    <string name="add">+ Catatan</string>
-    <string name="song_name">Nama lagu</string>
-    <string name="status_ready">Siap</string>
-    <string name="status_playing">Memutar</string>
+    <string name="save">Save</string>
+    <string name="load">Load</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+    <string name="clear">Clear</string>
+    <string name="add">Add note</string>
+    <string name="song_name">Song name</string>
+    <string name="status_ready">Ready</string>
+    <string name="status_playing">Playing</string>
 </resources>
